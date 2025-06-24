@@ -1,6 +1,6 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "fitsheet-frontend",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@capacitor/android": "^7.4.0",
@@ -68,7 +68,17 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "craco test",
+    "build:mobile": "yarn build && npx cap sync",
+    "build:android": "yarn build && npx cap sync android && npx cap run android",
+    "build:ios": "yarn build && npx cap sync ios && npx cap run ios",
+    "sync": "npx cap sync",
+    "sync:android": "npx cap sync android",
+    "sync:ios": "npx cap sync ios",
+    "open:android": "npx cap open android",
+    "open:ios": "npx cap open ios",
+    "clean:mobile": "npx cap clean",
+    "cap:update": "npx cap update"
   },
   "browserslist": {
     "production": [
