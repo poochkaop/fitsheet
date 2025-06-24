@@ -17,6 +17,7 @@ import {
   AtSign
 } from 'lucide-react';
 import { generateMockOtp, verifyMockOtp, mockUsers } from '../../mock/mockData';
+import { sendPhoneOTP, verifyPhoneOTP, sendEmailOTP, initializeRecaptcha } from '../../firebase/auth';
 
 const LoginPage = () => {
   const navigate = useNavigate();
