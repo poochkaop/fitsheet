@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">Fitsheet</string>
-    <string name="title_activity_main">Fitsheet</string>
+    <string name="title_activity_main">Fitsheet - Home Fitness App</string>
     <string name="package_name">com.fitsheet.app</string>
     <string name="custom_url_scheme">com.fitsheet.app</string>
 </resources>
