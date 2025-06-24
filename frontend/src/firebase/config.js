@@ -1,15 +1,14 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
-// Firebase configuration - TO BE REPLACED WITH ACTUAL CONFIG
+// Firebase configuration - REAL CONFIG
 const firebaseConfig = {
-  // This is a placeholder config - replace with your actual Firebase config
-  apiKey: "demo-api-key",
-  authDomain: "fitsheet-demo.firebaseapp.com",
-  projectId: "fitsheet-demo",
-  storageBucket: "fitsheet-demo.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef123456"
+  apiKey: "AIzaSyAjI1BmS9_9WmGpGi44suTPEZybZKJumNk",
+  authDomain: "fitsheet-project.firebaseapp.com", // NEED TO UPDATE
+  projectId: "fitsheet-project", // NEED TO UPDATE  
+  storageBucket: "fitsheet-project.appspot.com", // NEED TO UPDATE
+  messagingSenderId: "123456789", // NEED TO UPDATE
+  appId: "1:123456789:web:abcdef123456" // NEED TO UPDATE
 };
 
 // Initialize Firebase
