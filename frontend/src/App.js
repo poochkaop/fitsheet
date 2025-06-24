@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "./components/ui/toaster";
 import { AuthProvider } from "./contexts/AuthContext";
+import { useMobile } from "./hooks/useMobile";
+import { notificationService } from "./services/notifications";
 
 // Import components
 import LandingPage from "./components/LandingPage";
@@ -18,8 +20,18 @@ import DietPlan from "./components/DietPlan";
 import Progress from "./components/Progress";
 
 function App() {
+  const { isNative, platform } = useMobile();
+
+  useEffect(() => {
+    // Initialize mobile services
+    if (isNative) {
+      console.log(`Fitsheet running on ${platform}`);
+      notificationService.initialize();
+    }
+  }, [isNative, platform]);
+
   return (
-    <div className="App">
+    <div className={`App ${isNative ? 'native-app' : 'web-app'}`}>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
