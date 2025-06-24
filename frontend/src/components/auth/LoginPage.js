@@ -67,19 +67,53 @@ const LoginPage = () => {
 
     setLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      const mockOtp = generateMockOtp(identifier);
-      setStep('otp');
-      setLoading(false);
-      setResendTimer(60);
+    try {
+      if (loginType === 'phone') {
+        // Initialize reCAPTCHA for phone verification
+        initializeRecaptcha();
+        const result = await sendPhoneOTP(identifier);
+        
+        if (result.success) {
+          setStep('otp');
+          setResendTimer(60);
+          toast({
+            title: "OTP Sent!",
+            description: `We've sent a 6-digit code to your phone number`,
+          });
+        } else {
+          // Fallback to mock for demo
+          const mockOtp = generateMockOtp(identifier);
+          setStep('otp');
+          setResendTimer(60);
+          toast({
+            title: "OTP Sent! (Demo Mode)",
+            description: `Demo OTP: ${mockOtp}. In production, this will be sent via SMS.`,
+          });
+        }
+      } else {
+        // Email OTP
+        const result = await sendEmailOTP(identifier);
+        
+        if (result.success) {
+          setStep('otp');
+          setResendTimer(60);
+          toast({
+            title: "OTP Sent!",
+            description: `We've sent a verification link to your email`,
+          });
+        } else {
+          // Fallback to mock for demo
+          const mockOtp = generateMockOtp(identifier);
+          setStep('otp');
+          setResendTimer(60);
+          toast({
+            title: "OTP Sent! (Demo Mode)",
+            description: `Demo OTP: ${mockOtp}. In production, this will be sent via email.`,
+          });
+        }
+      }
       
-      toast({
-        title: "OTP Sent!",
-        description: `We've sent a 6-digit code to your ${loginType}. Check console for mock OTP: ${mockOtp}`,
-      });
-
-      // Start countdown
+      // Start countdown timer
       const timer = setInterval(() => {
         setResendTimer(prev => {
           if (prev <= 1) {
@@ -89,7 +123,31 @@ const LoginPage = () => {
           return prev - 1;
         });
       }, 1000);
-    }, 1000);
+      
+    } catch (error) {
+      // Fallback to mock system for demo
+      const mockOtp = generateMockOtp(identifier);
+      setStep('otp');
+      setLoading(false);
+      setResendTimer(60);
+      
+      toast({
+        title: "OTP Sent! (Demo Mode)",
+        description: `Demo OTP: ${mockOtp}. Firebase not configured yet.`,
+      });
+      
+      const timer = setInterval(() => {
+        setResendTimer(prev => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    
+    setLoading(false);
   };
 
   const handleVerifyOtp = async () => {
