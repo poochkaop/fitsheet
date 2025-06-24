@@ -76,7 +76,7 @@ const PaymentPage = () => {
       
       toast({
         title: "Payment Successful!",
-        description: "Welcome to FitHome Premium! Your journey begins now.",
+        description: "Welcome to Fitsheet Premium! Your journey begins now.",
       });
       
       setTimeout(() => {
@@ -118,7 +118,7 @@ const PaymentPage = () => {
               <CardTitle className="text-3xl font-bold text-white">
                 {paymentStep === 'info' && 'Unlock Your Fitness Journey'}
                 {paymentStep === 'processing' && 'Processing Payment...'}
-                {paymentStep === 'success' && 'Welcome to FitHome Premium!'}
+                {paymentStep === 'success' && 'Welcome to Fitsheet Premium!'}
               </CardTitle>
               {paymentStep === 'info' && (
                 <p className="text-gray-300 text-lg">
@@ -208,7 +208,7 @@ const PaymentPage = () => {
                   </div>
                   <div className="p-4 bg-green-500/20 border border-green-500/30 rounded-lg">
                     <p className="text-green-300 text-sm">
-                      <strong>Welcome to FitHome Premium!</strong><br />
+                      <strong>Welcome to Fitsheet Premium!</strong><br />
                       Redirecting to your dashboard...
                     </p>
                   </div>

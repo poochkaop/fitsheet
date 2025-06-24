@@ -1,0 +1,27 @@
+{
+  "short_name": "Fitsheet",
+  "name": "Fitsheet - Home Fitness App",
+  "description": "Transform your body at home with personalized workout and diet plans",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=192&h=192&fit=crop&crop=center",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=512&h=512&fit=crop&crop=center",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#9333ea",
+  "background_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "categories": ["health", "fitness", "lifestyle"],
+  "lang": "en",
+  "dir": "ltr"
+}
