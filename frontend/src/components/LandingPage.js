@@ -71,7 +71,7 @@ const LandingPage = () => {
           <div className="flex items-center space-x-2">
             <Dumbbell className="w-8 h-8 text-yellow-400" />
             <h1 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-              FitHome
+              Fitsheet
             </h1>
           </div>
           <div className="flex space-x-4">
@@ -157,7 +157,7 @@ const LandingPage = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Why Choose{' '}
               <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-                FitHome?
+                Fitsheet?
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -273,13 +273,16 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Dumbbell className="w-6 h-6 text-yellow-400" />
-            <span className="text-xl font-bold">FitHome</span>
+            <span className="text-xl font-bold">Fitsheet</span>
           </div>
           <p className="text-gray-400">
             Transform your body, transform your life - all from home.
           </p>
         </div>
       </footer>
+
+      {/* reCAPTCHA container (invisible) */}
+      <div id="recaptcha-container"></div>
     </div>
   );
 };
