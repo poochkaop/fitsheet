@@ -62,30 +62,66 @@ const PaymentPage = () => {
     setLoading(true);
     setPaymentStep('processing');
     
-    // Simulate payment processing
-    setTimeout(() => {
-      // Mock successful payment
-      const updatedUser = {
-        ...user,
-        isPaid: true,
-        paymentDate: new Date().toISOString(),
-        subscriptionStatus: 'active'
-      };
+    try {
+      await createRazorpayOrder(
+        {
+          name: user.name,
+          email: user.email,
+          phone: user.phone
+        },
+        // Success callback
+        (paymentData) => {
+          console.log('Payment Success:', paymentData);
+          
+          // Update user with payment info
+          const updatedUser = {
+            ...user,
+            isPaid: true,
+            paymentDate: new Date().toISOString(),
+            subscriptionStatus: 'active',
+            paymentDetails: paymentData
+          };
+          
+          updateUser(updatedUser);
+          setPaymentStep('success');
+          
+          toast({
+            title: "Payment Successful! 🎉",
+            description: "Welcome to Fitsheet Premium! Your journey begins now.",
+          });
+          
+          setTimeout(() => {
+            navigate('/dashboard');
+          }, 3000);
+          
+          setLoading(false);
+        },
+        // Failure callback
+        (error) => {
+          console.error('Payment Failed:', error);
+          
+          setPaymentStep('info');
+          setLoading(false);
+          
+          toast({
+            title: "Payment Failed",
+            description: error || "Something went wrong. Please try again.",
+            variant: "destructive"
+          });
+        }
+      );
+    } catch (error) {
+      console.error('Payment Error:', error);
       
-      updateUser(updatedUser);
-      setPaymentStep('success');
+      setPaymentStep('info');
+      setLoading(false);
       
       toast({
-        title: "Payment Successful!",
-        description: "Welcome to Fitsheet Premium! Your journey begins now.",
+        title: "Payment Error",
+        description: "Unable to process payment. Please try again.",
+        variant: "destructive"
       });
-      
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 3000);
-      
-      setLoading(false);
-    }, 3000);
+    }
   };
 
   const handleSkip = () => {
